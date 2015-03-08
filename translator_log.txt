@@ -2428,3 +2428,19 @@ XML DOM Created Successfully..
  .....................
   => The task finished!
    * 1 out of 1 EDF files have been successfully translated.
+
+=====================================================================
+ + User started a new task at 2015-03-02 14:21:08
+ .....................
+  => Translating.. at 2015-03-02 14:21:08
+   * Vendor:	Compumedics
+   * Mapping:	/Users/wxwcase/Desktop/NSRR-Proj/MappingFile/mapping-Compumedics.csv(Existed)
+   * EDF file:	/Users/wxwcase/Desktop/NSRR-Proj/ATestFiles/SRC mapping files and untranslated EDFs/Compumedics/Cleveland Family/450100.EDF(Existed)
+   * Annotation:	/Users/wxwcase/Desktop/NSRR-Proj/ATestFiles/SRC mapping files and untranslated EDFs/Compumedics/Cleveland Family/450100.XML(Existed)
+   * Output file:	/Users/wxwcase/Desktop/NSRR-Proj/ATestFiles/test-category-out/450100-nsrr.xml
+   * Translation:	Successful!
+   * Errors:
+XML DOM Created Successfully..
+ .....................
+  => The task finished!
+   * 1 out of 1 EDF files have been successfully translated.
