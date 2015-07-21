@@ -34,12 +34,12 @@ import org.w3c.dom.NodeList;
  * 
  * @author wei wang, 2014-8-21
  */
-public class CompumedicsTranslatorFactory extends AbstractTranslatorFactory {
+public class ARESTranslatorFactory extends AbstractTranslatorFactory {
 
   private Document xmlRoot; // = new DocumentImpl(); // xml root
   private Element scoredEvents; // parent element of <Event>
 
-  public CompumedicsTranslatorFactory() {
+  public ARESTranslatorFactory() {
     super();
     System.out
         .println("=================================================================");
@@ -515,5 +515,90 @@ public class CompumedicsTranslatorFactory extends AbstractTranslatorFactory {
       log(errors.toString());
     }
     return map;
+  }
+}
+
+class ItemARES {
+  private int code;
+  private int attribute;
+  private int subattribute;
+  private String category;
+  private String cddName;
+  private String aresName;
+  
+  /* (non-Javadoc)
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    String result = String.valueOf(code);
+    result += String.valueOf(attribute);
+    result += String.valueOf(subattribute);
+    return Integer.valueOf(result);
+  }
+  
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override 
+  public boolean equals(Object obj) {
+    try {
+      ItemARES anotherItem = (ItemARES) obj;
+      if (anotherItem.hashCode() == this.hashCode()) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (Exception e) {
+      return false;
+    }
+  }
+  
+  public void setCode(int code) {
+    this.code = code;
+  }
+  
+  public int getCode() {
+    return code;
+  }
+  
+  public void setAttribute(int attribute) {
+    this.attribute = attribute;
+  }
+  
+  public int getAttribute() {
+    return attribute;
+  }
+  
+  public void setSubattribute(int subattribute) {
+    this.subattribute = subattribute;
+  }
+  
+  public int getSubattribute() {
+    return subattribute;
+  }
+  
+  public void setCategory(String category) {
+    this.category = category;
+  }
+  
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCddName(String cddName) {
+    this.cddName = cddName;
+  }
+  
+  public String getCddName() {
+    return cddName;
+  }
+
+  public void setAresName(String aresName) {
+    this.aresName = aresName;
+  }
+  
+  public String getAresName() {
+    return aresName;
   }
 }

@@ -84,11 +84,6 @@ public abstract class AbstractTranslatorFactory {
 	 */
 	public abstract HashMap<String,Object>[] readMapFile(String mapFile);
 
-	//************************************
-	// Initialization and utility methods
-	// @author wei, Apr, 2015
-	//************************************
-	
 	/**
    * Logs messages.
    * @param message the message to be logged
@@ -209,12 +204,8 @@ public abstract class AbstractTranslatorFactory {
       //System.out.println(dur[i]);
     }
       
-    // long numRec = edf.readLong();
-    // long durRec = edf.readLong();
     long duration = Long.parseLong(String.valueOf(durRec).trim()) * 
         Long.parseLong(String.valueOf(numRec).trim());
-    // long duration = 0;
-    // edf.read(time);
     timeStart[0] = String.valueOf(date) + " " + String.valueOf(time);
     timeStart[1] = String.valueOf(duration);
     
@@ -227,7 +218,7 @@ public abstract class AbstractTranslatorFactory {
       fmt = DateTimeFormat.forPattern("dd.MM.yy HH.mm.ss");
       edfDateTime = fmt.parseDateTime(new String(date) + " " + new String(time));
     } else {
-      fmt = DateTimeFormat.forPattern("HH.mm.ss"); // TODO: default year 1970
+      fmt = DateTimeFormat.forPattern("HH.mm.ss"); // default year 1970
       edfDateTime = fmt.parseDateTime(new String(time));
     }
   }
