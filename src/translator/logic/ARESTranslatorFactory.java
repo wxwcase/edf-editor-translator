@@ -127,7 +127,8 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
       scoredEvent.appendChild(notesElement);
       
       String info = xmlAnnotation + "," + code + "," + startTime;
-      log(info);
+//      log(info);
+      addElementIntoLog(">>> Missing event code: " + code, true);
     }
 
     return scoredEvent;
@@ -158,7 +159,7 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
         "subattribute");
     String eventKey = code + attribute + subattribute;
 
-    System.out.println("KEY: " + eventKey + "map contains key? " + map[1].containsKey(eventKey));
+//    System.out.println("KEY: " + eventKey + "map contains key? " + map[1].containsKey(eventKey));
     List<Element> list = new ArrayList<Element>();
     @SuppressWarnings({ "unused", "unchecked" })
     String eventType = ((ArrayList<String>) map[1].get(eventKey)).get(0);
@@ -236,8 +237,8 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
     if (duration > 0) {
       durationTime = String.valueOf(duration);
     }
-    System.out.print("Start Time: " + startTime + ", Stop Time:" + stopTime + " ");
-    System.out.println("Duration: " + durationTime);
+//    System.out.print("Start Time: " + startTime + ", Stop Time:" + stopTime + " ");
+//    System.out.println("Duration: " + durationTime);
 
     if (durationTime != null) {
       return durationTime;
@@ -387,6 +388,9 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
 
         while ((line = input.readLine()) != null) {
           String[] data = line.split(",");
+          if (data == null || data[0] == "" || data[0].length() == 0 || data[0] == null) {
+            break;
+          }
 
           String eventTypeLowerCase = data[0].toLowerCase();
           String eventCategory = data[0];
