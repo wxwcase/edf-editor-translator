@@ -156,6 +156,11 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
     return scoredEvent;
   }
 
+  /**
+   * TODO: Check the start/stop time format: seconds/milliseconds?
+   * @param scoredEventElement
+   * @return
+   */
   private List<Element> getLocation(Element scoredEventElement) {
     // {eventConcept, duration, start}
     String code = getElementByChildTag(scoredEventElement, "code");
@@ -245,6 +250,7 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
     String stopTime = getElementByChildTag(scoredEvent, "stoptime");
     String durationTime = "Invalid Duration";
     int duration = Integer.valueOf(stopTime) - Integer.valueOf(startTime);
+    duration /= 1000; // Assume duration is in millisecond format
     if (duration > 0) {
       durationTime = String.valueOf(duration);
     }
