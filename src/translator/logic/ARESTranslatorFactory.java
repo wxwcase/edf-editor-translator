@@ -65,6 +65,11 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
 
   @Override
   public boolean translate() {
+    System.out.println("Signal Label in EDF: ");
+    for (String signal : signalLabels) {
+      System.out.print(" \"" + signal + "\"");
+    }
+    System.out.println();
     boolean result = false;
     Element root = createEmptyDocument(softwareVersion);
 
@@ -211,15 +216,21 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
    */
   public String getSignalLocationFromEvent(Element scoredEvent,
       String annLocation) {
-
-    String code = getElementByChildTag(scoredEvent, "code");
-    String attribute = getElementByChildTag(scoredEvent, "attribtue");
-    String subattribute = getElementByChildTag(scoredEvent, "subattribtue");
-    String eventKey = code + attribute + subattribute;
+    String attributeStr = getElementByChildTag(scoredEvent, "attribute");
+    String subattributeStr = getElementByChildTag(scoredEvent, "subattribute");
+    
+    if (attributeStr == null || subattributeStr == null) {
+      return "";
+    }
+    int code = Integer.valueOf(getElementByChildTag(scoredEvent, "code"));
+    int attribute = Integer.valueOf(attributeStr);
+    int subattribute = Integer.valueOf(subattributeStr);
+//    String eventKey = code + attribute + subattribute;
+    AresItemKey aresKey = new AresItemKey(code, attribute, subattribute);
 
     String result = signalLabels[0]; // initialize to the first EDF signal
 
-    String defaultSignal = (String) map[4].get(eventKey);
+    String defaultSignal = (String) map[4].get(aresKey.toString());
     List<String> edfSignals = Arrays.asList(signalLabels);
 
     if (edfSignals.contains(defaultSignal)) {
@@ -408,8 +419,8 @@ public class ARESTranslatorFactory extends AbstractTranslatorFactory {
               && !eventTypeLowerCase.contains("stages")) {
 
             // Process signal column in mapping file
-            if (data[4].length() != 0) {
-              defaultSignal = data[4];
+            if (data.length >= 5) {
+              defaultSignal = data[4].trim();
             }
 
             // values = {aresName: String, cddName: String, note: String}
